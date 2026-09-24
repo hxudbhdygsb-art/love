@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Our Little Story ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&family=Cairo:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FBF5F1;
+      --blush: #F4DEE2;
+      --rose: #C97B93;
+      --rose-deep: #A85D77;
+      --plum: #3E2C34;
+      --plum-soft: #6E5560;
+      --gold: #E9C9A3;
+      --white: #FFFEFC;
+      --shadow: 0 20px 50px -20px rgba(62, 44, 52, .25);
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      color: var(--plum);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .section {
+      padding: 100px 20px;
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--plum-soft);
+      max-width: 520px;
+      margin: 0 auto 50px;
+      line-height: 1.6;
+    }
+
+    #floatLayer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .floatie {
+      position: absolute;
+      bottom: -40px;
+      opacity: .55;
+      animation: rise linear forwards;
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-110vh) translateX(var(--drift, 0px)) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      background: radial-gradient(ellipse at 50% -10%, var(--blush) 0%, var(--cream) 55%);
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 9vw, 4.6rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+    }
+
+    .hero-sub {
+      margin-top: 18px;
+      font-size: 1.15rem;
+      color: var(--plum-soft);
+      max-width: 420px;
+    }
+
+    .hero-names {
+      margin-top: 10px;
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--rose-deep);
+      letter-spacing: .02em;
+    }
+
+    .hero-date {
+      margin-top: 34px;
+      font-size: .95rem;
+      letter-spacing: .06em;
+      color: var(--rose-deep);
+      font-weight: 500;
+    }
+
+    .timer {
+      margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 640px;
+    }
+
+    .timer .card {
+      background: rgba(255, 255, 255, .55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, .7);
+      border-radius: 18px;
+      padding: 16px 14px;
+      min-width: 78px;
+      box-shadow: var(--shadow);
+    }
+
+    .timer .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--rose-deep);
+      line-height: 1;
+    }
+
+    .timer .lbl {
+      font-size: .68rem;
+      letter-spacing: .05em;
+      color: var(--plum-soft);
+      margin-top: 6px;
+    }
+
+    .hero-line {
+      margin-top: 30px;
+      font-style: italic;
+      color: var(--plum-soft);
+      font-size: 1rem;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      font-size: .8rem;
+      color: var(--plum-soft);
+      opacity: .7;
+    }
+
+    .photo-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 34px 22px;
+      padding: 20px 10px 10px;
+    }
+
+    .polaroid {
+      background: var(--white);
+      padding: 14px 14px 46px;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      width: 220px;
+      cursor: zoom-in;
+      transition: transform .35s ease, box-shadow .35s ease;
+      position: relative;
+    }
+
+    .polaroid:nth-child(1) {
+      transform: rotate(-5deg);
+    }
+
+    .polaroid:nth-child(2) {
+      transform: rotate(4deg);
+      margin-top: 26px;
+    }
+
+    .polaroid:nth-child(3) {
+      transform: rotate(-2deg);
+    }
+
+    .polaroid:nth-child(4) {
+      transform: rotate(6deg);
+      margin-top: 14px;
+    }
+
+    .polaroid:nth-child(5) {
+      transform: rotate(-6deg);
+    }
+
+    .polaroid:hover {
+      transform: scale(1.06) rotate(0deg);
+      box-shadow: 0 30px 60px -20px rgba(62, 44, 52, .35);
+      z-index: 3;
+    }
+
+    .polaroid .ph {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: linear-gradient(135deg, var(--blush), #fff);
+      border-radius: 2px;
+    }
+
+    .polaroid .cap {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--plum-soft);
+      font-size: .95rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(62, 44, 52, .82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 30px;
+      backdrop-filter: blur(6px);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: min(90vw, 520px);
+      max-height: 85vh;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 30px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .game-block {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 36px 26px;
+      max-width: 420px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .game-block h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .game-block p {
+      color: var(--plum-soft);
+      font-size: .9rem;
+      margin-bottom: 20px;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 320px;
+      margin: 0 auto 16px;
+    }
+
+    .mem-card {
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      background: var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform .25s ease, background .25s ease;
+      color: #fff;
+      user-select: none;
+    }
+
+    .mem-card.flipped {
+      background: var(--blush);
+      color: var(--plum);
+      transform: scale(1.04);
+    }
+
+    .mem-card.matched {
+      background: var(--gold);
+      color: var(--plum);
+      cursor: default;
+      opacity: .65;
+    }
+
+    .game-msg {
+      min-height: 1.4em;
+      color: var(--rose-deep);
+      font-size: .95rem;
+      margin-top: 4px;
+    }
+
+    .meter-track {
+      height: 22px;
+      background: var(--blush);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--rose), var(--rose-deep));
+      transition: width .12s ease;
+    }
+
+    .scratch-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .scratch-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 220px;
+      height: 170px;
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      flex: 1 1 200px;
+    }
+
+    .scratch-reveal {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blush);
+      font-size: 1.15rem;
+      text-align: center;
+      padding: 20px;
+      color: var(--rose-deep);
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .scratchCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      touch-action: none;
+      border-radius: 16px;
+    }
+
+    .puzzle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 9/16;
+      margin: 0 auto 6px;
+      gap: 2px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .puzzle-piece {
+      background-size: 300% 500%;
+      cursor: pointer;
+      outline: 3px solid transparent;
+      outline-offset: -3px;
+      transition: outline-color .2s ease;
+    }
+
+    .puzzle-piece.selected {
+      outline-color: var(--rose);
+    }
+
+    .catch-area {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      height: 260px;
+      margin: 0 auto 16px;
+      background: linear-gradient(180deg, var(--blush), var(--cream));
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .catch-hud {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 14px;
+      font-size: .85rem;
+      color: var(--plum-soft);
+      z-index: 2;
+    }
+
+    .catch-heart {
+      position: absolute;
+      top: 0;
+      font-size: 1.6rem;
+      cursor: pointer;
+      user-select: none;
+      animation: fallHeart linear forwards;
+    }
+
+    @keyframes fallHeart {
+      from {
+        transform: translateY(-30px);
+      }
+
+      to {
+        transform: translateY(260px);
+      }
+    }
+
+    .lc-input {
+      display: block;
+      width: 100%;
+      max-width: 240px;
+      margin: 0 auto 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 2px solid var(--blush);
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      background: var(--cream);
+      color: var(--plum);
+    }
+
+    .lc-input:focus {
+      outline: none;
+      border-color: var(--rose);
+    }
+
+    .lc-result {
+      margin-top: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      color: var(--rose-deep);
+      font-weight: 600;
+      min-height: 1.4em;
+    }
+
+    .quiz-box {
+      background: var(--white);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 44px 30px;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-track {
+      height: 5px;
+      background: var(--blush);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--rose);
+      width: 0%;
+      transition: width .5s ease;
+    }
+
+    .progress-label {
+      font-size: .78rem;
+      color: var(--plum-soft);
+      letter-spacing: .04em;
+      margin-bottom: 22px;
+    }
+
+    .q-prompt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 26px;
+      min-height: 2.2em;
+    }
+
+    .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .q-opt {
+      background: var(--cream);
+      border: 2px solid transparent;
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      text-align: right;
+      cursor: pointer;
+      transition: all .25s ease;
+      color: var(--plum);
+    }
+
+    .q-opt:hover {
+      border-color: var(--rose);
+      background: var(--blush);
+    }
+
+    .q-opt.correct-flash {
+      background: var(--rose);
+      color: #fff;
+      border-color: var(--rose);
+    }
+
+    .q-opt.wrong-flash {
+      animation: shake .4s ease;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-8px);
+      }
+
+      40% {
+        transform: translateX(8px);
+      }
+
+      60% {
+        transform: translateX(-6px);
+      }
+
+      80% {
+        transform: translateX(6px);
+      }
+    }
+
+    .feedback {
+      margin-top: 18px;
+      min-height: 1.4em;
+      font-size: .95rem;
+      text-align: center;
+    }
+
+    .feedback.wrong {
+      color: var(--rose-deep);
+    }
+
+    .feedback.good {
+      color: #4a7a5a;
+    }
+
+    .quiz-sub {
+      color: var(--plum-soft);
+      margin-bottom: 6px;
+    }
+
+    .unlock-screen {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .unlock-screen.show {
+      display: block;
+      animation: fadeUp .7s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .unlock-title {
+      font-size: 2.4rem;
+      font-weight: 600;
+    }
+
+    .unlock-sub {
+      margin: 14px 0 30px;
+      color: var(--plum-soft);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--rose-deep);
+      color: #fff;
+      border: none;
+      padding: 16px 34px;
+      border-radius: 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      letter-spacing: .02em;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 14px 30px -12px rgba(168, 93, 119, .6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+    }
+
+    #finalPage {
+      display: none;
+    }
+
+    #finalPage.show {
+      display: block;
+      animation: fadeUp .8s ease;
+    }
+
+    .video-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #000;
+      aspect-ratio: 478/850;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: fill;
+    }
+
+    .letter {
+      background: var(--white);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 50px 34px 40px;
+      width: 100%;
+      max-width: 640px;
+      margin: 60px auto 0;
+      position: relative;
+    }
+
+    .letter::before {
+      content: "❤";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.6rem;
+      color: var(--rose);
+    }
+
+    .letter-text {
+      font-family: "Cairo", "Cormorant Garamond", sans-serif;
+      font-size: 1.2rem;
+      line-height: 2.1;
+      color: var(--plum);
+      text-align: center;
+      direction: rtl;
+    }
+
+    .letter-text .ln {
+      display: block;
+      text-wrap: balance;
+      margin-bottom: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .letter-text .intro {
+      color: var(--rose-deep);
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .hearts {
+      margin-top: 26px;
+      font-size: 1.7rem;
+      letter-spacing: 6px;
+      text-align: center;
+      line-height: 1.6;
+      animation: beat 1.6s ease-in-out infinite;
+    }
+
+    @keyframes beat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 20px 90px;
+      color: var(--plum-soft);
+      font-size: .85rem;
+    }
+
+    @media (max-width:520px) {
+      .section {
+        padding: 70px 16px;
+      }
+
+      .timer .card {
+        min-width: 66px;
+        padding: 12px 8px;
+      }
+
+      .timer .num {
+        font-size: 1.5rem;
+      }
+
+      .photo-wrap {
+        gap: 44px 0;
+      }
+
+      .polaroid {
+        width: 74vw;
+        max-width: 320px;
+      }
+
+      #photos {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .quiz-box {
+        padding: 32px 20px;
+      }
+
+      .letter {
+        padding: 42px 20px 32px;
+      }
+
+      .letter-text {
+        font-size: 1.02rem;
+        line-height: 2;
+      }
+
+      .hearts {
+        font-size: 1.4rem;
+        letter-spacing: 4px;
+      }
+
+      .video-frame {
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="floatLayer"></div>
+
+  <section class="hero">
+    <h1 class="hero-title">Our Little Story ❤️</h1>
+    <div class="hero-names">مريومة &amp; حمودي</div>
+    <p class="hero-sub">And somehow, one day became our favorite story...</p>
+    <div class="hero-date">Since 10 / 02 / 2024</div>
+    <div class="timer" id="timer">
+      <div class="card">
+        <div class="num" id="t-years">0</div>
+        <div class="lbl">Years</div>
+      </div>
+      <div class="card">
+        <div class="num" id="t-months">0</div>
+        <div class="lbl">Months</div>
+      </div>
+      <div class="card">
+        <div class="num" id="t-days">0</div>
+        <div class="lbl">Days</div>
+      </div>
+      <div class="card">
+        <div class="num" id="t-hours">0</div>
+        <div class="lbl">Hours</div>
+      </div>
+      <div class="card">
+        <div class="num" id="t-mins">0</div>
+        <div class="lbl">Minutes</div>
+      </div>
+      <div class="card">
+        <div class="num" id="t-secs">0</div>
+        <div class="lbl">Seconds</div>
+      </div>
+    </div>
+    <p class="hero-line">كل ثانية في عمري بحبها معاك. ❤️</p>
+    <div class="scroll-hint">scroll ↓</div>
+  </section>
+
+  <section class="section center" id="photos">
+    <h2 class="section-title">Us ❤️</h2>
+    <p class="section-sub">Little moments, kept safe.</p>
+    <div class="photo-wrap">
+      <div class="polaroid" onclick="openLightbox(this)"><img class="ph"
+          src="m1.jpeg"
+          alt="">
+        <div class="cap">our first day</div>
+      </div>
+      <div class="polaroid" onclick="openLightbox(this)"><img class="ph"
+          src="m2.jpeg"
+          alt="">
+        <div class="cap">that trip</div>
+      </div>
+      <div class="polaroid" onclick="openLightbox(this)"><img class="ph"
+          src="m3.jpeg"
+          alt="">
+        <div class="cap">just us</div>
+      </div>
+      <div class="polaroid" onclick="openLightbox(this)"><img class="ph"
+          src="m4.jpeg"
+          alt="">
+        <div class="cap">that night</div>
+      </div>
+      <div class="polaroid" onclick="openLightbox(this)"><img class="ph"
+          src="m5.jpeg"
+          alt="">
+        <div class="cap">favorite one</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <div id="lightboxContent"></div>
+  </div>
+
+  <section class="section" id="gamesSection">
+    <div class="center">
+      <h2 class="section-title">Play with us a little 🎮❤️</h2>
+      <p class="section-sub"> شوية ألعاب لذيذة قبل الكويز الجدي اللي هنكد عليك بسببه😌</p>
+    </div>
+
+    <div class="game-block">
+      <h3>ميموري ❤️</h3>
+      <p>قلّب الكروت ولاقي كل زوج قلوب متشابه</p>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="game-msg" id="memoryMsg"></div>
+    </div>
+
+    <div class="game-block">
+      <h3>Love Meter 💓</h3>
+      <p>دوس بسرعة وخلي العداد يوصل ١٠٠٪</p>
+      <div class="meter-track">
+        <div class="meter-fill" id="meterFill"></div>
+      </div>
+      <button class="btn-primary" id="meterBtn">دوس هنا! 💗</button>
+      <div class="game-msg" id="meterMsg"></div>
+    </div>
+
+    <div class="game-block">
+      <h3>Puzzle الصورة 🧩</h3>
+      <p>دوس على قطعتين عشان تبدلهم لحد ما الصورة تظبط</p>
+      <div class="puzzle-grid" id="puzzleGrid"></div>
+      <div class="game-msg" id="puzzleMsg"></div>
+    </div>
+
+    <div class="game-block">
+      <h3>Catch the Heart 💓</h3>
+      <p>امسك أكبر عدد من القلوب في ١٥ ثانية</p>
+      <div class="catch-area" id="catchArea">
+        <div class="catch-hud"><span id="catchScore">Score: 0</span><span id="catchTime">15s</span></div>
+      </div>
+      <button class="btn-primary" id="catchStartBtn">ابدأ يا حموداااي💓</button>
+    </div>
+
+    <div class="game-block">
+      <h3>Love Calculator 💘</h3>
+      <p>اكتب اسمنا اشوف بتحبني قد ايه يا بيه 😏</p>
+      <input type="text" id="lcName1" class="lc-input" placeholder="اسمك" value="">
+      <input type="text" id="lcName2" class="lc-input" placeholder="اسمه" value="">
+      <button class="btn-primary" id="lcBtn">احسب يا عسليتي 💘</button>
+      <div class="lc-result" id="lcResult"></div>
+    </div>
+
+    <div class="game-block">
+      <h3>كروت ليك يا حتتييي ✨</h3>
+      <p>امسح هنا يا حمودي </p>
+      <div class="scratch-cards">
+        <div class="scratch-wrap">
+          <div class="scratch-reveal">بحبك أكتر من اي حاجة في الدنيا ❤️</div><canvas class="scratchCanvas"></canvas>
+        </div>
+        <div class="scratch-wrap">
+          <div class="scratch-reveal">انت أحلى حاجة حصلتلي 🥹</div><canvas class="scratchCanvas"></canvas>
+        </div>
+        <div class="scratch-wrap">
+          <div class="scratch-reveal">هفضل معاك لحد ما نبقى عواجيز ان شاءالله 👵🏻👴🏻❤️</div><canvas
+            class="scratchCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quizSection">
+    <div class="center">
+      <h2 class="section-title">خلينا نشوف عارفنا قد ايه يا بيه? 👀❤️</h2>
+      <p class="quiz-sub"> ... بس يا رب تعرف عشان منكدش عليك </p>
+    </div>
+    <div class="quiz-box" id="quizBox">
+      <div id="quizPlay">
+        <div class="progress-label" id="progressLabel">Question 1 of 6</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="q-prompt" id="qPrompt"></div>
+        <div class="q-options" id="qOptions"></div>
+        <div class="feedback" id="qFeedback"></div>
+      </div>
+      <div class="unlock-screen" id="unlockScreen">
+        <div class="unlock-title">اشطر كتكوت فعمرييي... ❤️</div>
+        <p class="unlock-sub">شوف بقى التحفة الللي بعشقها دي. 🥹</p>
+        <button class="btn-primary" onclick="goFinal()">Open our next chapter →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="finalPage">
+    <div class="center">
+      <h2 class="section-title">A little piece of us يا عمرييي❤️</h2>
+    </div>
+    <div class="video-frame">
+      <video controls playsinline preload="metadata" style="background:linear-gradient(135deg,var(--blush),#3E2C34)">
+        <source
+          src="video1.mp4"
+          type="video/mp4">
+        Your browser does not support video.
+      </video>
+    </div>
+    <div class="letter">
+      <div class="letter-text" id="letterText" dir="rtl">
+        <span class="ln intro">و دي بقى اقل حاجة ممكن اقولها في حقك...</span>
+        <span class="ln">حقيقي يحيك جدا يا حمودي مهما اقول كلام الدنيا ليك مش هوفيك</span>
+        <span class="ln">انت اقرب صاحب ليا واكتر حد بحبه في حياتي وبلجأليه</span>
+        <span class="ln">لاني حقيقي مش بشوف غيرك في حياتي انت كل حاجة بجد ليا</span>
+        <span class="ln">و بجد اهم حد فدنيتي وعمري ما بقدر اتخيل حياتي من غيرك</span>
+        <span class="ln">ربنا يديمك فحياتي وتفضل مالي قلبي ودنيتي علطول كده.. بحبك.</span>
+        <div class="hearts">❤️❤️❤️❤️❤️<br>❤️❤️❤️</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>made with ❤️, just for us.</footer>
+
+  <script>
+    (function () {
+      const layer = document.getElementById('floatLayer');
+      const glyphs = ['❤', '✦', '♡', '✧'];
+      function spawn() {
+        const el = document.createElement('div');
+        el.className = 'floatie';
+        el.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+        el.style.fontSize = (10 + Math.random() * 16) + 'px';
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.color = Math.random() > .5 ? '#C97B93' : '#E9C9A3';
+        el.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
+        const dur = 9 + Math.random() * 8;
+        el.style.animationDuration = dur + 's';
+        layer.appendChild(el);
+        setTimeout(() => el.remove(), dur * 1000);
+      }
+      setInterval(spawn, 1400);
+      for (let i = 0; i < 4; i++) setTimeout(spawn, i * 400);
+    })();
+
+    const startDate = new Date(2024, 1, 10, 0, 0, 0);
+    function updateTimer() {
+      const now = new Date();
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+      let hours = now.getHours() - startDate.getHours();
+      let mins = now.getMinutes() - startDate.getMinutes();
+      let secs = now.getSeconds() - startDate.getSeconds();
+      if (secs < 0) {secs += 60; mins--;}
+      if (mins < 0) {mins += 60; hours--;}
+      if (hours < 0) {hours += 24; days--;}
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+      }
+      if (months < 0) {months += 12; years--;}
+      document.getElementById('t-years').textContent = years;
+      document.getElementById('t-months').textContent = months;
+      document.getElementById('t-days').textContent = days;
+      document.getElementById('t-hours').textContent = hours;
+      document.getElementById('t-mins').textContent = mins;
+      document.getElementById('t-secs').textContent = secs;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    function openLightbox(el) {
+      document.getElementById('lightboxContent').innerHTML = el.querySelector('.ph').outerHTML;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox(e) {
+      if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('open');
+      }
+    }
+
+    const questions = [
+      {prompt: "إمتى اتعرفنا؟ 👀", correct: "10/2/2024", choices: ["10/2/2024", "2/10/2024", "15/3/2024", "1/1/2024"], correctMsg: "يسسسس صحححح 😍❤️"},
+      {prompt: "إمتى ارتبطنا؟ ❤️", correct: "4/5/2024", choices: ["4/5/2024", "5/4/2024", "20/6/2024", "10/2/2024"], correctMsg: "يولد يا شاطر 😎❤️"},
+      {prompt: "إيه أكتر أكلة بنحبها؟ 😭❤️", correct: "الشاورما", choices: ["الشاورما", "الكشري", "الفول", "البيتزا"], correctMsg: "يالهووي ع الشطارة 🔥❤️"},
+      {prompt: "إيه أكتر لون أنا بحبه؟ 🎀", correct: "pink💗", choices: ["pink💗", "blue 💙", "black 🖤", "green 💚"], correctMsg: "اوعاااا بقى 😏💗"},
+      {prompt: "إيه أكتر حاجة بتحبها فيا؟ 🥹❤️", correct: "بحبك عشانك وبس", choices: ["بحبك عشانك وبس", "بحبك عشان شكلك", "بحبك عشان بتضحكيني بس", "مش عارف "], correctMsg: "ودييي يا حمودي 🥹❤️"},
+      {prompt: "هنفضل مع بعض لغايت إمتى؟ ♾️❤️", correct: "♾️ إلى ما لا نهاية", choices: ["♾️ إلى ما لا نهاية", "لحد ما نزهق", "سنة", "شهرين"], correctMsg: " اشطر كتكوت فحياتي شوف بقى كده ♾️❤️"},
+    ];
+    const wrongMsgs = ["فكر تاااني عشان منكدش عليك ", "غلططط 😭 فكر تاااني عشان منكدش عليك 😂❤️"];
+
+    let qIndex = 0;
+    let currentOrder = [];
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    function renderQuestion() {
+      const q = questions[qIndex];
+      document.getElementById('progressLabel').textContent = `Question ${qIndex + 1} of ${questions.length}`;
+      document.getElementById('progressFill').style.width = ((qIndex) / questions.length * 100) + '%';
+      document.getElementById('qPrompt').textContent = q.prompt;
+      document.getElementById('qFeedback').textContent = '';
+      document.getElementById('qFeedback').className = 'feedback';
+      currentOrder = shuffle(q.choices);
+      const optsEl = document.getElementById('qOptions');
+      optsEl.innerHTML = '';
+      currentOrder.forEach(choice => {
+        const btn = document.createElement('button');
+        btn.className = 'q-opt';
+        btn.textContent = choice;
+        btn.onclick = () => handleAnswer(choice, btn);
+        optsEl.appendChild(btn);
+      });
+    }
+    function handleAnswer(choice, btn) {
+      const q = questions[qIndex];
+      if (choice === q.correct) {
+        btn.classList.add('correct-flash');
+        document.getElementById('qFeedback').textContent = q.correctMsg || 'يسسسس😍❤️صح! ';
+        document.getElementById('qFeedback').className = 'feedback good';
+        spawnHearts();
+        document.querySelectorAll('.q-opt').forEach(b => b.style.pointerEvents = 'none');
+        setTimeout(() => {
+          qIndex++;
+          if (qIndex >= questions.length) {
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('quizPlay').style.display = 'none';
+            document.getElementById('unlockScreen').classList.add('show');
+          } else {
+            renderQuestion();
+          }
+        }, 850);
+      } else {
+        btn.classList.add('wrong-flash');
+        document.getElementById('qFeedback').textContent = wrongMsgs[Math.floor(Math.random() * wrongMsgs.length)];
+        document.getElementById('qFeedback').className = 'feedback wrong';
+        setTimeout(() => btn.classList.remove('wrong-flash'), 400);
+      }
+    }
+    function spawnHearts() {
+      const layer = document.getElementById('floatLayer');
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'floatie';
+          el.textContent = '❤';
+          el.style.fontSize = (14 + Math.random() * 14) + 'px';
+          el.style.left = (40 + Math.random() * 20) + 'vw';
+          el.style.bottom = '30vh';
+          el.style.color = '#C97B93';
+          el.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+          el.style.animationDuration = '2.5s';
+          layer.appendChild(el);
+          setTimeout(() => el.remove(), 2500);
+        }, i * 60);
+      }
+    }
+    function goFinal() {
+      document.getElementById('finalPage').classList.add('show');
+      document.getElementById('finalPage').scrollIntoView({behavior: 'smooth'});
+    }
+
+    const memSymbols = ['❤️', '💌', '💍', '🌹'];
+    let memDeck = shuffle([...memSymbols, ...memSymbols]);
+    let memFlipped = [];
+    let memMatched = 0;
+    function renderMemory() {
+      const grid = document.getElementById('memoryGrid');
+      grid.innerHTML = '';
+      memDeck.forEach(sym => {
+        const c = document.createElement('div');
+        c.className = 'mem-card';
+        c.textContent = '❤';
+        c.dataset.sym = sym;
+        c.onclick = () => flipMem(c);
+        grid.appendChild(c);
+      });
+    }
+    function flipMem(c) {
+      if (c.classList.contains('flipped') || c.classList.contains('matched') || memFlipped.length === 2) return;
+      c.classList.add('flipped');
+      c.textContent = c.dataset.sym;
+      memFlipped.push(c);
+      if (memFlipped.length === 2) {
+        setTimeout(() => {
+          const [a, b] = memFlipped;
+          if (a.dataset.sym === b.dataset.sym) {
+            a.classList.add('matched'); b.classList.add('matched');
+            memMatched += 2;
+            if (memMatched === memDeck.length) {
+              document.getElementById('memoryMsg').textContent = 'برافووو بحبك ❤️';
+              spawnHearts();
+            }
+          } else {
+            a.classList.remove('flipped'); a.textContent = '❤';
+            b.classList.remove('flipped'); b.textContent = '❤';
+          }
+          memFlipped = [];
+        }, 650);
+      }
+    }
+    renderMemory();
+
+    let meterVal = 0;
+    let meterDone = false;
+    document.getElementById('meterBtn').addEventListener('click', () => {
+      if (meterDone) return;
+      meterVal = Math.min(100, meterVal + 6);
+      document.getElementById('meterFill').style.width = meterVal + '%';
+      if (meterVal >= 100) {
+        meterDone = true;
+        document.getElementById('meterMsg').textContent = 'قلبي اتملي بيك للأبد ❤️';
+        spawnHearts();
+      }
+    });
+
+    const PUZZLE_IMAGE_URL = 'm6.jpeg';
+    const puzzleBg = `url("${PUZZLE_IMAGE_URL}")`;
+    function posForIndex(idx) {
+      const r = Math.floor(idx / 3), c = idx % 3;
+      return `${c * 100 / 2}% ${r * 100 / 4}%`;
+    }
+    let puzzleOrder = shuffle(Array.from({length: 15}, (_, i) => i));
+    while (puzzleOrder.every((v, i) => v === i)) {puzzleOrder = shuffle(Array.from({length: 15}, (_, i) => i));}
+    let puzzleSelected = null;
+    function renderPuzzle() {
+      const grid = document.getElementById('puzzleGrid');
+      grid.innerHTML = '';
+      puzzleOrder.forEach((correctIdx, slot) => {
+        const piece = document.createElement('div');
+        piece.className = 'puzzle-piece';
+        piece.style.backgroundImage = puzzleBg;
+        piece.style.backgroundPosition = posForIndex(correctIdx);
+        piece.onclick = () => handlePuzzleClick(slot, piece);
+        grid.appendChild(piece);
+      });
+    }
+    function handlePuzzleClick(slot, piece) {
+      if (puzzleSelected === null) {
+        puzzleSelected = slot;
+        piece.classList.add('selected');
+        return;
+      }
+      if (puzzleSelected === slot) {
+        piece.classList.remove('selected');
+        puzzleSelected = null;
+        return;
+      }
+      [puzzleOrder[puzzleSelected], puzzleOrder[slot]] = [puzzleOrder[slot], puzzleOrder[puzzleSelected]];
+      puzzleSelected = null;
+      renderPuzzle();
+      if (puzzleOrder.every((v, i) => v === i)) {
+        document.getElementById('puzzleMsg').textContent = 'برافووو ياجااامد  ❤️';
+        spawnHearts();
+      }
+    }
+    renderPuzzle();
+
+    let catchScore = 0, catchTimer = null, catchSpawner = null, catchTimeLeft = 15;
+    function spawnCatchHeart() {
+      const area = document.getElementById('catchArea');
+      const heart = document.createElement('div');
+      heart.className = 'catch-heart';
+      heart.textContent = '❤';
+      heart.style.left = (Math.random() * 85) + '%';
+      const dur = 2.4 + Math.random() * 1.6;
+      heart.style.animationDuration = dur + 's';
+      heart.style.color = Math.random() > .5 ? '#C97B93' : '#A85D77';
+      heart.onclick = () => {
+        catchScore++;
+        document.getElementById('catchScore').textContent = 'Score: ' + catchScore;
+        heart.remove();
+      };
+      area.appendChild(heart);
+      setTimeout(() => heart.remove(), dur * 1000);
+    }
+    document.getElementById('catchStartBtn').addEventListener('click', () => {
+      if (catchTimer) return;
+      catchScore = 0; catchTimeLeft = 15;
+      document.getElementById('catchScore').textContent = 'Score: 0';
+      document.getElementById('catchTime').textContent = '15s';
+      document.querySelectorAll('.catch-heart').forEach(h => h.remove());
+      catchSpawner = setInterval(spawnCatchHeart, 550);
+      catchTimer = setInterval(() => {
+        catchTimeLeft--;
+        document.getElementById('catchTime').textContent = catchTimeLeft + 's';
+        if (catchTimeLeft <= 0) {
+          clearInterval(catchTimer); clearInterval(catchSpawner);
+          catchTimer = null; catchSpawner = null;
+          document.querySelectorAll('.catch-heart').forEach(h => h.remove());
+          document.getElementById('catchTime').textContent = `خلصتي بـ ${catchScore} ❤️`;
+          spawnHearts();
+        }
+      }, 1000);
+    });
+
+    document.getElementById('lcBtn').addEventListener('click', () => {
+      const n1 = document.getElementById('lcName1').value.trim();
+      const n2 = document.getElementById('lcName2').value.trim();
+      if (!n1 || !n2) return;
+      let seed = 0;
+      for (const ch of (n1 + n2)) seed += ch.charCodeAt(0);
+      const pct = 85 + (seed % 15);
+      document.getElementById('lcResult').textContent = `${n1} 💕 ${n2} = ${pct}%`;
+      spawnHearts();
+    });
+
+    document.querySelectorAll('.scratchCanvas').forEach(canvas => {
+      const ctx = canvas.getContext('2d');
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = '#C97B93';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      let scratching = false;
+      function scratchAt(x, y) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const t = e.touches ? e.touches[0] : e;
+        return {x: t.clientX - rect.left, y: t.clientY - rect.top};
+      }
+      canvas.addEventListener('mousedown', e => {scratching = true; const p = getPos(e); scratchAt(p.x, p.y);});
+      canvas.addEventListener('mousemove', e => {if (scratching) {const p = getPos(e); scratchAt(p.x, p.y);} });
+      window.addEventListener('mouseup', () => scratching = false);
+      canvas.addEventListener('touchstart', e => {scratching = true; const p = getPos(e); scratchAt(p.x, p.y);});
+      canvas.addEventListener('touchmove', e => {e.preventDefault(); const p = getPos(e); scratchAt(p.x, p.y);}, {passive: false});
+      canvas.addEventListener('touchend', () => scratching = false);
+    });
+
+    renderQuestion();
+  </script>
+</body>
+
+</html>
